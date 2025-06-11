@@ -1,17 +1,17 @@
-import { useState } from "react"
-import { Button } from "@/components/ui/button"
-import { 
-  Send, 
-  Upload, 
-  X, 
-  FileText, 
-  User, 
-  Mail, 
-  Package, 
-  Hash,
-  MessageSquare,
-  Building
-} from "lucide-react"
+import { useState } from "react";
+import { Button } from "@/components/ui/button";
+import {
+  Send,
+  Upload,
+  X,
+  FileText,
+  User,
+  // Mail,
+  Package,
+  // Hash,
+  // MessageSquare,
+  Building,
+} from "lucide-react";
 
 export function InquiryForm() {
   const [formData, setFormData] = useState({
@@ -21,42 +21,44 @@ export function InquiryForm() {
     quantity: "",
     gstinNumber: "",
     message: "",
-    info: ""
-  })
-  const [selectedImage, setSelectedImage] = useState<File | null>(null)
-  const [imagePreview, setImagePreview] = useState<string | null>(null)
+    info: "",
+  });
+  const [selectedImage, setSelectedImage] = useState<File | null>(null);
+  const [imagePreview, setImagePreview] = useState<string | null>(null);
 
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    const { name, value } = e.target
-    setFormData(prev => ({
+  const handleInputChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => {
+    const { name, value } = e.target;
+    setFormData((prev) => ({
       ...prev,
-      [name]: value
-    }))
-  }
+      [name]: value,
+    }));
+  };
 
   const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const file = e.target.files?.[0]
+    const file = e.target.files?.[0];
     if (file) {
-      setSelectedImage(file)
-      const reader = new FileReader()
+      setSelectedImage(file);
+      const reader = new FileReader();
       reader.onload = (e) => {
-        setImagePreview(e.target?.result as string)
-      }
-      reader.readAsDataURL(file)
+        setImagePreview(e.target?.result as string);
+      };
+      reader.readAsDataURL(file);
     }
-  }
+  };
 
   const removeImage = () => {
-    setSelectedImage(null)
-    setImagePreview(null)
-  }
+    setSelectedImage(null);
+    setImagePreview(null);
+  };
 
   const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault()
+    e.preventDefault();
     // Handle form submission here
-    console.log("Form submitted:", { ...formData, image: selectedImage })
-    alert("Thank you for your inquiry! We'll get back to you soon.")
-  }
+    console.log("Form submitted:", { ...formData, image: selectedImage });
+    alert("Thank you for your inquiry! We'll get back to you soon.");
+  };
 
   return (
     <section className="py-16 lg:py-24 bg-muted/30">
@@ -70,8 +72,8 @@ export function InquiryForm() {
             Send Us an Inquiry
           </h2>
           <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
-            Have a question about our products or services? Fill out the form below 
-            and our team will get back to you within 24 hours.
+            Have a question about our products or services? Fill out the form
+            below and our team will get back to you within 24 hours.
           </p>
         </div>
 
@@ -87,7 +89,9 @@ export function InquiryForm() {
                 </h3>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   <div>
-                    <label htmlFor="name" className="block text-sm font-medium text-card-foreground mb-2">
+                    <label
+                      htmlFor="name"
+                      className="block text-sm font-medium text-card-foreground mb-2">
                       Full Name *
                     </label>
                     <input
@@ -102,7 +106,9 @@ export function InquiryForm() {
                     />
                   </div>
                   <div>
-                    <label htmlFor="email" className="block text-sm font-medium text-card-foreground mb-2">
+                    <label
+                      htmlFor="email"
+                      className="block text-sm font-medium text-card-foreground mb-2">
                       Email Address *
                     </label>
                     <input
@@ -127,7 +133,9 @@ export function InquiryForm() {
                 </h3>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   <div>
-                    <label htmlFor="productName" className="block text-sm font-medium text-card-foreground mb-2">
+                    <label
+                      htmlFor="productName"
+                      className="block text-sm font-medium text-card-foreground mb-2">
                       Product Name *
                     </label>
                     <input
@@ -142,7 +150,9 @@ export function InquiryForm() {
                     />
                   </div>
                   <div>
-                    <label htmlFor="quantity" className="block text-sm font-medium text-card-foreground mb-2">
+                    <label
+                      htmlFor="quantity"
+                      className="block text-sm font-medium text-card-foreground mb-2">
                       Quantity
                     </label>
                     <input
@@ -166,7 +176,9 @@ export function InquiryForm() {
                   Business Information
                 </h3>
                 <div>
-                  <label htmlFor="gstinNumber" className="block text-sm font-medium text-card-foreground mb-2">
+                  <label
+                    htmlFor="gstinNumber"
+                    className="block text-sm font-medium text-card-foreground mb-2">
                     GSTIN Number
                   </label>
                   <input
@@ -224,8 +236,7 @@ export function InquiryForm() {
                       <button
                         type="button"
                         onClick={removeImage}
-                        className="absolute top-2 right-2 bg-destructive text-destructive-foreground rounded-full p-1 hover:bg-destructive/90 transition-colors"
-                      >
+                        className="absolute top-2 right-2 bg-destructive text-destructive-foreground rounded-full p-1 hover:bg-destructive/90 transition-colors">
                         <X className="h-4 w-4" />
                       </button>
                     </div>
@@ -241,7 +252,9 @@ export function InquiryForm() {
                 </h3>
                 <div className="space-y-6">
                   <div>
-                    <label htmlFor="info" className="block text-sm font-medium text-card-foreground mb-2">
+                    <label
+                      htmlFor="info"
+                      className="block text-sm font-medium text-card-foreground mb-2">
                       Product Information
                     </label>
                     <textarea
@@ -255,7 +268,9 @@ export function InquiryForm() {
                     />
                   </div>
                   <div>
-                    <label htmlFor="message" className="block text-sm font-medium text-card-foreground mb-2">
+                    <label
+                      htmlFor="message"
+                      className="block text-sm font-medium text-card-foreground mb-2">
                       Message *
                     </label>
                     <textarea
@@ -279,7 +294,8 @@ export function InquiryForm() {
                   Send Inquiry
                 </Button>
                 <p className="text-sm text-muted-foreground mt-4">
-                  We'll respond to your inquiry within 24 hours during business days.
+                  We'll respond to your inquiry within 24 hours during business
+                  days.
                 </p>
               </div>
             </form>
@@ -287,5 +303,5 @@ export function InquiryForm() {
         </div>
       </div>
     </section>
-  )
+  );
 }
